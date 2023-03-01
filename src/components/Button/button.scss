@@ -1,0 +1,22 @@
+@use "../../sass/abstracts" as *;
+
+button {
+    display: block;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.3rem;
+    color: $color-offwhite;
+
+    &.green {
+        background-color: $color-green;
+    }
+
+    &.orange {
+        background-color: $color-orange;
+    }
+
+    &.black {
+        background-color: $color-black;
+    }
+}

@@ -1,0 +1,60 @@
+@use "../../sass/abstracts" as *;
+
+
+section {
+    @include flex(column, center, center);
+    text-align: center;
+    min-height: calc(100vh - 12rem);
+    position: relative;
+
+    form {
+        @include flex(column, center, center);
+        gap: 1.5rem;
+        margin-top: 3rem;
+        min-width: 432px;
+
+        input,
+        button {
+            width: 100%;
+        }
+
+        input {
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+            border: $border-grey;
+        }
+    }
+
+    p {
+        margin-top: 1.5rem;
+    }
+
+    .form-link {
+        color: $color-orange;
+    }
+
+    .header {
+        position: relative;
+
+        .error {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            color: $color-orange;
+            width: 432px;
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 480px) {
+    section {
+
+        form {
+            min-width: unset;
+            width: 100%;
+        }
+    }
+}

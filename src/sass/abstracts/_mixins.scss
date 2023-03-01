@@ -1,0 +1,21 @@
+@mixin grid($template, $row, $column) {
+    display: grid;
+    grid-template-columns: $template;
+    row-gap: $row;
+    column-gap: $column;
+}
+
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+@mixin grayscale($value) {
+    filter: grayscale($value);
+        -webkit-filter: grayscale($value);
+        -moz-filter: grayscale($value);
+        -ms-filter: grayscale($value);
+        -o-filter: grayscale($value);
+}

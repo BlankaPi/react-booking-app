@@ -1,0 +1,30 @@
+@use "../abstracts" as *;
+
+body {
+    overflow-x: hidden;
+    background: $color-offwhite;
+}
+
+.container {
+    margin: 0 80px;    
+    min-height: calc(100vh - 12rem);
+}
+
+img {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        margin: 0 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        margin: 0 24px;
+    }
+}
+

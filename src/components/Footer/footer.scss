@@ -1,0 +1,7 @@
+@use "../../sass/abstracts" as *;
+
+.footer {
+    @include flex(row, center, center);
+    background-color: $color-offwhite;
+    height: 6rem;
+}

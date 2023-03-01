@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@200;400;600;800&family=Jost:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+
+/* FONTS */
+
+$font-serif: 'DM Serif Display', serif;
+$font-jost: 'Jost', sans-serif;
+$font-inter: 'Inter', sans-serif;
+
+/* COLORS */
+$color-black: hsl(0, 0%, 9%);
+$color-grey: hsl(216, 12%, 84%);
+$color-green: hsl(176, 69%, 22%);
+$color-orange: hsl(14, 70%, 61%);
+$color-offwhite: hsl(33, 100%, 96%);
+$color-white: hsl(0, 100%, 100%);
+
+/* WIDTH */
+$container-width-lg: 70%;
+$container-width-md: 90%;
+
+/*TRANSITION */
+$transition: all 350ms ease;
+
+/* BORDERS */
+$border-grey: 1px solid $color-grey;
+
+/*ANIMATIONS*/
+.scale-up-center {
+    -webkit-animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}

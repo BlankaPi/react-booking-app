@@ -1,0 +1,72 @@
+@use "../abstracts/" as *;
+
+body, input, textarea {
+    font-family: $font-inter;
+    color: $color-black;
+}
+
+h1, h2, h3, h4 {
+    line-height: 125%;    
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.2rem;
+}
+
+h3 {
+    font-size: 1.6rem;
+}
+
+p, div, a, button, input, textarea {
+    font-size: 1.2rem;
+}
+
+.user-logo {
+    font-size: 1.5rem;
+}
+
+a, input, textarea {
+    color: $color-black;
+}
+
+/*MEDIA QUERIES FOR FONTS */
+
+
+@media screen and (max-width: 1025px) {
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
+
+    h3 {
+        font-size: 1.3rem;
+    }
+
+    p, div, a, button, input, textarea {
+        font-size: 1.1rem;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1rem;
+    }
+
+    p, div, a, button, input, textarea {
+        font-size: 1rem;
+    }
+}

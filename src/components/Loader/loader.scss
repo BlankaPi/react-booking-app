@@ -1,0 +1,27 @@
+@use "../../sass/abstracts" as *;
+
+.wrapper {
+    position: fixed;
+    @include flex(row, center, center);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($color-white, 0.7);
+    z-index: 9;
+}
+
+.loader {
+    position: fixed;
+    z-index: 999;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(farthest-side, #115f5a 95%, #0000) 50% 1.1px/13.4px 13.4px no-repeat,
+        radial-gradient(farthest-side, #0000 calc(100% - 15.7px), rgba(17, 95, 90, 0.1) 0);
+    animation: spinner-aur408 1s infinite linear;
+}
+
+@keyframes spinner-aur408 {
+    to {
+        transform: rotate(1turn);
+    }
+}
