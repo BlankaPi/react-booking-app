@@ -5,17 +5,53 @@ section {
     @include flex(column, center, center);
     text-align: center;
     min-height: calc(100vh - 12rem);
-    position: relative;
+
+    .header {
+        @include flex(column, center, center);
+        min-width: 432px; 
+        position: relative;
+
+        h1, h4 {
+            width: 100%;
+        }
+
+        .error {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            color: $color-orange;
+        }
+    }
 
     form {
         @include flex(column, center, center);
-        gap: 1.5rem;
-        margin-top: 3rem;
+        gap: 2rem;
+        margin-top: 3.5rem;
         min-width: 432px;
 
         input,
-        button {
+        button, .input-wrapper {
             width: 100%;
+        }
+
+        .input-wrapper {
+            position: relative;
+            @include flex(row, flex-end, center);
+
+            .button-hidden {
+                width: unset;
+                position: absolute;
+                padding: 0;
+                background: none;
+                color: rgba($color-black, 0.5);
+                @include flex(row, center, center);
+                margin-right: 1rem;
+
+                svg {
+                    font-size: 1.5rem;
+                }
+            }
         }
 
         input {
@@ -33,26 +69,13 @@ section {
         color: $color-orange;
     }
 
-    .header {
-        position: relative;
-
-        .error {
-            position: absolute;
-            top: 90%;
-            left: 50%;
-            transform: translate(-50%, 50%);
-            color: $color-orange;
-            width: 432px;
-        }
-    }
-
 }
 
 
 @media screen and (max-width: 480px) {
     section {
 
-        form {
+        form, .header {
             min-width: unset;
             width: 100%;
         }

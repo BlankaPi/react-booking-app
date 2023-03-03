@@ -9,6 +9,7 @@ import Logout from './pages/auth/Logout';
 import Register from './pages/auth/Register';
 import Footer from './components/Footer/Footer';
 import Dashboard from './pages/Dashboard/Dashboard';
+import HouseDetail from './pages/HouseDetail';
 
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './privateRoute/PrivateRoute';
@@ -20,6 +21,7 @@ const App = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/:id" element={<HouseDetail />} />
           <Route path="/about" element={<About />} />
           <Route path="/login" element={<Login />} />
           <Route path="/logout" element={<Logout />} />

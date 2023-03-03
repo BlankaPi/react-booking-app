@@ -35,12 +35,14 @@ const Navbar = () => {
                 <h1>CAMP</h1>
             </Link>
             <ul>
-                <li>
-                    <NavLink to="/dashboard">
-                        <RiIcons.RiChatSmile3Line className='user-logo' transform="scale(-1, 1)" />
-                        Hi! {currentUser && userName}
-                    </NavLink>
-                </li>
+                <ShowOnLogin>
+                    <li>
+                        <NavLink to="/dashboard">
+                            <RiIcons.RiChatSmile3Line className='user-logo' transform="scale(-1, 1)" />
+                            Hi! {currentUser && userName}
+                        </NavLink>
+                    </li>
+                </ShowOnLogin>
                 <li>
                     <NavLink to="/about">
                         About
