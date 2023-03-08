@@ -7,20 +7,20 @@ const useFetchCollection = () => {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const collectionRef = collection(db, "houses");
+    const q = query(collectionRef);
+    // , orderBy("sth")
+
     const getCollection = () => {
         setIsLoading(true);
 
         // FIREBASE DOCUMENTATION   
         try {
-            const collectionRef = collection(db, "houses");
-            const q = query(collectionRef, orderBy("id"));
-
             onSnapshot(q, (querySnapshot) => {
-                // console.log(querySnapshot);
-                const allData = [];
-                querySnapshot.forEach((doc) => {
-                    allData.push(doc.data());
-                });
+                const allData = querySnapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
                 setData(allData);
                 setIsLoading(false);
             });

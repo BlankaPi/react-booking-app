@@ -1,0 +1,122 @@
+@use "../../sass/abstracts" as *;
+
+.admin-navbar {
+    @include flex(row, flex-start, center);
+    padding: 0 0;
+    border-bottom: none;
+
+    a {
+        &:nth-child(1) {
+            margin-right: 2rem;
+        }
+
+        &.active {
+            button {
+                background-color: $color-orange;
+            }
+        }
+    }
+}
+
+/* ADMIN SECTION - ADDING NEW HOUSE FORM */
+
+.admin-form {
+    @include flex(column, center, center);
+    gap: 0.5rem;
+    max-width: 672px;
+    margin: 0 auto;
+    position: relative;
+
+    button,
+    fieldset,
+    textarea {
+        width: 100%;
+    }
+
+    label {
+        text-align: left;
+        margin-top: 1rem;
+
+        &.main-label {
+            width: 100%;
+            font-size: 1.2rem;
+            font-weight: 600;
+
+            &+input {
+                width: 100%;
+            }
+        }
+    }
+
+    legend {
+        width: 100%;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    fieldset {
+        border: none;
+        margin-top: 1rem;
+        // margin: 1rem 0;
+    }
+
+    input,
+    textarea {
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+        border: $border-grey;
+    }
+
+    input[type=radio], input[type=checkbox]  {
+        margin-right: 1rem;
+
+        &+label {
+            margin-right: 2rem;
+        }
+    }
+
+    .input-file {
+        @include flex(column, center, center);
+
+        &::-webkit-file-upload-button {
+            display: none;
+        }
+
+        &::before {
+            content: 'Add house image';
+            text-align: center;
+            font-size: 1rem;
+            display: inline-block;
+            display: block;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1.5rem;
+            height: 34px;
+            border-radius: 0.3rem;
+            color: $color-offwhite;
+            transition: $transition;
+            background: $color-green;
+            margin-bottom: 0.5rem
+        }
+    }
+
+    .form-img {
+        @include flex(row, space-between, center);
+        width: 100%;
+
+        input {
+            width: 25%;
+        }
+    }
+
+    button {
+        margin: 3rem auto;
+    }
+
+    h4{
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 1rem;
+    }
+}

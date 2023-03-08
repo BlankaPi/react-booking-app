@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '../Button/Button';
 import "./houses.scss";
 import { Link } from 'react-router-dom';
+import * as FaIcons from "react-icons/fa";
 
 const HouseCard = (props) => {
     return (
@@ -11,10 +12,16 @@ const HouseCard = (props) => {
                     <img src={props.imageUrl[0]} alt="house" />
                 </div>
                 <div className='title-container'>
-                    <h3>{props.title}</h3>
-                    <h3>{props.price} $/day</h3>
+                    <h4>{props.title}</h4>
+                    <h4>{props.price} $/day</h4>
                 </div>
-                <Button text={props.type} color="orange" type="button" />
+                <div className='detail-container'>
+                    <Button text={props.type} color="orange" type="button" />
+                    {
+                        props.petFriendly && <FaIcons.FaDog />
+                    }
+                </div>
+
             </Link>
         </article>
     )

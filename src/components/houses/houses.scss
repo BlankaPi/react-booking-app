@@ -43,6 +43,14 @@
         @include flex(row, space-between, center);
         margin: 0.5rem 0;
     }
+
+    .detail-container {
+        @include flex(row, space-between, center);
+
+        svg {
+            font-size: 1.5rem;
+        }
+    }
 }
 
 .house-detail-card {

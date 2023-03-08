@@ -10,9 +10,11 @@ import Register from './pages/auth/Register';
 import Footer from './components/Footer/Footer';
 import Dashboard from './pages/Dashboard/Dashboard';
 import HouseDetail from './pages/HouseDetail';
+import Admin from './pages/Admin/Admin';
 
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './privateRoute/PrivateRoute';
+import AdminOnlyRoute from './components/adminOnlyRoute/AdminOnlyRoute';
 
 const App = () => {
   return (
@@ -31,6 +33,13 @@ const App = () => {
               <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
+            }
+          />
+          <Route path="/admin/*"
+            element={
+              <AdminOnlyRoute>
+                <Admin />
+              </AdminOnlyRoute>
             }
           />
         </Routes>

@@ -39,7 +39,6 @@ const Register = () => {
     }
     setIsLoading(false);
   }
-  //"Failed to create an account"
 
   return (
     <>

@@ -5,6 +5,8 @@ nav {
     padding: 0 80px;
     height: 6rem;
     border-bottom: $border-grey;
+    position: relative;
+    
 
     &.navbar {
         margin-top: 0;
@@ -20,10 +22,14 @@ nav {
     }
 
     ul {
-        @include flex(row, space-between, center);
+        @include flex(row, flex-end, center);
 
         li {
             margin-left: 2rem;
+
+            &:nth-child(1) {
+                margin-left: 0;
+            }
         }
     }
 }

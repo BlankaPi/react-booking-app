@@ -3,7 +3,9 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import * as RiIcons from "react-icons/ri";
 import "./navbar.scss";
 import { useAuth } from '../../context/AuthContext';
-import { ShowOnLogin, ShowOnLogOut } from "../../privateRoute/HiddenLinks"
+import { ShowOnLogin, ShowOnLogOut } from "../../privateRoute/HiddenLinks";
+import Button from '../Button/Button';
+import AdminOnlyLinks from '../adminOnlyRoute/AdminOnlyLinks';
 
 const Navbar = () => {
     const [userName, setUserName] = useState("");
@@ -34,6 +36,18 @@ const Navbar = () => {
                 <RiIcons.RiHomeHeartLine />
                 <h1>CAMP</h1>
             </Link>
+
+            {/* BUTTON SHOWING ONLY FOR ADMIN */}
+            <AdminOnlyLinks>
+                {
+                    <Link to="/admin/add">
+                        <Button color="green" type="button" text="Admin" />
+                    </Link>
+                }
+
+            </AdminOnlyLinks>
+
+            {/* MENU BAR */}
             <ul>
                 <ShowOnLogin>
                     <li>
