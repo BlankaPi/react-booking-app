@@ -1,6 +1,6 @@
 @use "../../sass/abstracts" as *;
 
-button {
+.rectangle {
     display: block;
     border: none;
     cursor: pointer;
@@ -20,4 +20,21 @@ button {
     &.black {
         background-color: $color-black;
     }    
+}
+
+.arrow-button {
+    @include flex(row, center, center);
+    border: none;
+    padding: 1rem 0;
+    cursor: pointer;
+    background-color: transparent;
+    color: $color-black;
+    text-decoration: underline;    
+
+    svg {
+        margin-right: 0.5rem;
+        color: $color-black;
+        font-size: 1.5rem;
+        padding: 0;
+    }
 }

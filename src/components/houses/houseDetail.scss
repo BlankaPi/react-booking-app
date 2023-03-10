@@ -1,0 +1,72 @@
+@use "../../sass/abstracts/" as *;
+
+// HOUSE-CARD WITH DETAILS
+
+.house-detail-card {
+    margin: 0 auto 2rem;
+}
+
+.multi-img-container {
+    display: flex;
+    flex-direction: row;
+    max-height: 80vh;
+    aspect-ratio: 3 / 2;
+    margin-bottom: 2rem;
+    position: relative;
+
+    button.rectangle {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 0.5rem;
+        background-color: rgba($color-offwhite, 0.9);
+        color: $color-black;
+    }
+
+    .big-img-container {
+        flex: 2;
+        @include flex(column, center, center);
+        overflow: hidden;
+        border-radius: 5px;        
+    }
+
+    .small-img-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        margin-left: 1rem;
+        gap: 1rem;
+    }
+}
+
+.img {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    @include flex(row, center, center);
+    border-radius: 5px;
+}
+
+img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
+    transition: $transition;
+
+    // &:hover {
+    //     filter: brightness(80%);
+    // }
+}
+
+.details-container {
+    margin: 1rem 0;
+
+    h3 {
+        margin-bottom: 1rem;
+    }
+}
+
+.disabled {
+    cursor: auto;
+}

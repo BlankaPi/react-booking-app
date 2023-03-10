@@ -10,9 +10,14 @@ $font-inter: 'Inter', sans-serif;
 $color-black: hsl(0, 0%, 9%);
 $color-grey: hsl(216, 12%, 84%);
 $color-green: hsl(176, 69%, 22%);
-$color-orange: hsl(14, 70%, 61%);
 $color-offwhite: hsl(33, 100%, 96%);
 $color-white: hsl(0, 100%, 100%);
+
+//orange theme
+$color-orange: hsl(14, 70%, 61%);
+$color-orange-light-1: hsl(33, 100%, 91%);
+$color-orange-light-2: hsl(34, 100%, 85%);
+$color-orange-light-3: hsl(33, 100%, 78%);
 
 /* WIDTH */
 $container-width-lg: 70%;

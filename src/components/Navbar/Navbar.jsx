@@ -10,6 +10,7 @@ import AdminOnlyLinks from '../adminOnlyRoute/AdminOnlyLinks';
 const Navbar = () => {
     const [userName, setUserName] = useState("");
     const [message, setMessage] = useState("");
+    const [isNavShowing, setNavShowing] = useState(false);
 
     const { currentUser, logout } = useAuth();
     const navigate = useNavigate();
@@ -25,6 +26,7 @@ const Navbar = () => {
             await logout();
             navigate("/login")
             setUserName("")
+            setNavShowing(false)
         } catch {
             setMessage("Failed to log out")
         }
@@ -32,39 +34,39 @@ const Navbar = () => {
 
     return (
         <nav className='navbar'>
-            <Link to="/">
+            <Link to="/" onClick={() => setNavShowing(false)}>
                 <RiIcons.RiHomeHeartLine />
                 <h1>CAMP</h1>
             </Link>
 
-            {/* BUTTON SHOWING ONLY FOR ADMIN */}
-            <AdminOnlyLinks>
-                {
-                    <Link to="/admin/add">
-                        <Button color="green" type="button" text="Admin" />
-                    </Link>
-                }
-
-            </AdminOnlyLinks>
-
             {/* MENU BAR */}
-            <ul>
+            <ul className={`nav-links ${isNavShowing ? "shov_nav" : "hide_nav"}`} >
+                {/* BUTTON SHOWING ONLY FOR ADMIN */}
+                <AdminOnlyLinks>
+                    {
+                        <li>
+                            <Link to="/admin/add" onClick={() => setNavShowing(prev => !prev)}>
+                                <Button color="green" type="button" text="Admin" />
+                            </Link>
+                        </li>
+                    }
+                </AdminOnlyLinks>
                 <ShowOnLogin>
                     <li>
-                        <NavLink to="/dashboard">
+                        <NavLink to="/dashboard" onClick={() => setNavShowing(prev => !prev)}>
                             <RiIcons.RiChatSmile3Line className='user-logo' transform="scale(-1, 1)" />
                             Hi! {currentUser && userName}
                         </NavLink>
                     </li>
                 </ShowOnLogin>
                 <li>
-                    <NavLink to="/about">
+                    <NavLink to="/about" onClick={() => setNavShowing(prev => !prev)}>
                         About
                     </NavLink>
                 </li>
                 <ShowOnLogOut>
                     <li>
-                        <NavLink to="/login">
+                        <NavLink to="/login" onClick={() => setNavShowing(prev => !prev)}>
                             Login
                         </NavLink>
                     </li>
@@ -77,6 +79,11 @@ const Navbar = () => {
                     </li>
                 </ShowOnLogin>
             </ul>
+            <button className='nav__toggle-btn' onClick={() => setNavShowing(prev => !prev)}>
+                {
+                    isNavShowing ? <RiIcons.RiCloseLine /> : <RiIcons.RiMenuFill />
+                }
+            </button>
         </nav>
     )
 }

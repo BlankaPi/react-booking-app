@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import LoaderDetail from '../components/Loader/LoaderDetail';
 import HouseDetailCard from '../components/houses/HouseDetailCard';
 import { doc, getDoc } from "firebase/firestore";
 import { db } from '../firebase/config';
+import Slider from '../components/Slider/Slider';
+import ArrowButton from '../components/Button/ArrowButton';
 
 const HouseDetail = () => {
     const { id } = useParams();
     const [house, setHouse] = useState(null);
+    const [showAllPhotos, setShowAllPhotos] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getHouse()
@@ -25,11 +29,39 @@ const HouseDetail = () => {
         }
     }
 
+    const handleClickOff = () => {
+        setShowAllPhotos(false);
+    }
+
+    const handleClickOn = () => {
+        setShowAllPhotos(true);
+    }
+
+    const handleGoHome = () => {
+        navigate("/");
+    }
+
+    //do zrobienia!!!
+
+    if (house && showAllPhotos) {
+        return (
+            <div className='container'>
+                <ArrowButton type="button" text="Go back" handleClick={handleClickOff} />
+                <div className='slider-container'>
+                    <Slider {...house} />
+                </div >
+            </div>
+
+        )
+    }
+
     return (
         <div className='container'>
+            <ArrowButton type="button" text="Go back" handleClick={handleGoHome}/>
             {house ? (
-                <HouseDetailCard {...house} />
+                <HouseDetailCard {...house} handleClick={handleClickOn}/>
             ) : <LoaderDetail />}
+            <p onClick={() => setShowAllPhotos(true)}>Gallery</p>
         </div>
     )
 }

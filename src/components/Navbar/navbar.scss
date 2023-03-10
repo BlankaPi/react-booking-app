@@ -1,35 +1,38 @@
 @use "../../sass/abstracts/" as *;
 
+// only shows on medium and small screens
+.nav__toggle-btn {
+    display: none;
+}
+
+
 nav {
     @include flex(row, space-between, center);
-    padding: 0 80px;
+    max-width: 1120px;
+    margin: 0 auto;
     height: 6rem;
     border-bottom: $border-grey;
     position: relative;
-    
-
-    &.navbar {
-        margin-top: 0;
-    }
 
     a {
         @include flex(row, center, center);
+        transition: $transition;
 
         svg {
             font-size: 3rem;
             margin-right: 1rem;
         }
+
+        // &:hover {
+        //     color: $color-green;
+        // }
     }
 
-    ul {
+    .nav-links {
         @include flex(row, flex-end, center);
 
         li {
             margin-left: 2rem;
-
-            &:nth-child(1) {
-                margin-left: 0;
-            }
         }
     }
 }
@@ -54,7 +57,60 @@ nav {
 }
 
 @media screen and (max-width: 768px) {
-    nav {
+    .navbar {
         padding: 0 24px;
+        position: relative;
+
+        .user-logo {
+            display: none;
+        }
+
+        .nav-links {
+            flex-direction: column;
+            position: absolute;
+            top: 101%;
+            right: 0;
+            left: 0;
+            background-color: $color-offwhite;
+            z-index: 99;
+            transition: $transition;
+
+
+            li {
+                margin-left: 0;
+                padding: 0.75rem 0;
+                width: 100%;
+                background-color: $color-offwhite;
+                border-bottom: $border-grey;
+                transition: $transition;
+
+                &:hover {
+                    background-color: $color-orange-light-1;
+                }
+
+            }
+        }
+
+        .shov_nav {
+            display: flex;
+        }
+
+        .hide_nav {
+            display: none;
+        }
     }
+
+    .nav__toggle-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: transparent;
+        color: $color-black;
+        font-size: 1.8rem;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+    }
+
+
 }

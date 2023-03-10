@@ -1,17 +1,28 @@
 import React from 'react';
 import Button from '../Button/Button';
-import "./houses.scss";
+import "./houseDetail.scss";
 // import { Link } from 'react-router-dom';
 
-const HouseDetailCard = (props) => {
+const HouseDetailCard = (props, {handleClick}) => {
     return (
         <article className="house-detail-card">
             <div className='multi-img-container'>
-                <img src={props.imageUrl[0]} alt="house" />
-                <img src={props.imageUrl[1]} alt="house" />
-                <img src={props.imageUrl[2]} alt="house" />
+            <Button text="Go to gallery" type="button" onClick={handleClick} />
+                <div className='big-img-container'>
+                    <img src={props.imageUrl[0]} alt="house" />
+                </div>
+                {props.imageUrl[1] && (
+                    <div className='small-img-container'>
+                        <div className='img'>
+                            <img src={props.imageUrl[1]} alt="house" />
+                        </div>
+                        <div className='img'>
+                            <img src={props.imageUrl[2]} alt="house" />
+                        </div >
+                    </div>
+                )}
             </div>
-            <Button text={props.type} color="orange" type="button" disabled />
+            <Button text={props.type} color="orange disabled" type="button" disabled />
             <div className='details-container'>
                 <h3>{props.title}</h3>
                 <h3>{props.price} $/day</h3>
