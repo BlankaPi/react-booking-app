@@ -1,30 +1,37 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./slider.scss";
 import * as RiIcons from "react-icons/ri";
 
-const Slider = (props) => {
-    const [currentSlide, setCurrentSlide] = useState(0);
+const Slider = ({ photoUrl, ...props }) => {
     const sliderLength = props.imageUrl.length;
+    const imgArray = props.imageUrl;
     console.log(sliderLength);
 
-    const nextSlide = () => {
-        setCurrentSlide(currentSlide === sliderLength - 1 ? 0 : currentSlide + 1)
-    };
-    const prevSlide = () => {
-        setCurrentSlide(currentSlide === 0 ? sliderLength - 1 : currentSlide - 1)
-    };
+    const [x, setX] = useState(0);
+    const goLeft = () => {
+        x === 0 ? setX(-100 * (sliderLength - 1)) : setX(x + 100);
+    }
+
+    const goRight = () => {
+        x === -100 * (sliderLength - 1) ? setX(0) : setX(x - 100);
+    }
+
+    useEffect(() => {
+        if (photoUrl) {
+            const indexUrl = imgArray.indexOf(`${photoUrl}`);
+            setX(-100 * indexUrl);
+        }
+    }, [photoUrl, imgArray])
 
     return (
-        <div className='photo-album '>
+        <div className='photo-album'>
 
-            <RiIcons.RiArrowLeftSLine className='arrow left' onClick={prevSlide} />
-            <RiIcons.RiArrowRightSLine className='arrow right' onClick={nextSlide} />
+            <RiIcons.RiArrowLeftSLine className='arrow left' onClick={goLeft} />
+            <RiIcons.RiArrowRightSLine className='arrow right' onClick={goRight} />
 
             {props.imageUrl.map((photo, index) => (
-                <div key={index} className={index === currentSlide ? "current slide" : "slide"}  >
-                    {index === currentSlide && (
-                        <img src={photo} alt="house" />
-                    )}
+                <div key={index} className="slide" style={{ transform: `translateX(${x}%)` }}>
+                    <img src={photo} alt="house" />
                 </div>
             ))}
         </div>

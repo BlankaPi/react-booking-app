@@ -4,6 +4,7 @@
     @include flex(row, flex-start, center);
     padding: 0 0;
     border-bottom: none;
+    box-shadow: none;
 
     a {
         &:nth-child(1) {
@@ -68,7 +69,8 @@
         border: $border-grey;
     }
 
-    input[type=radio], input[type=checkbox]  {
+    input[type=radio],
+    input[type=checkbox] {
         margin-right: 1rem;
 
         &+label {
@@ -76,37 +78,70 @@
         }
     }
 
-    .input-file {
-        @include flex(column, center, center);
-
-        &::-webkit-file-upload-button {
-            display: none;
-        }
-
-        &::before {
-            content: 'Add house image';
-            text-align: center;
-            font-size: 1rem;
-            display: inline-block;
-            display: block;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem 1.5rem;
-            height: 34px;
-            border-radius: 0.3rem;
-            color: $color-offwhite;
-            transition: $transition;
-            background: $color-green;
-            margin-bottom: 0.5rem
-        }
-    }
+    // IMG INPUT 
 
     .form-img {
-        @include flex(row, space-between, center);
         width: 100%;
+        min-height: 300px;
+        position: relative;
+        border: 3px dotted $color-grey;
 
-        input {
-            width: 25%;
+        div {
+            position: absolute;
+            @include flex(column, center, center);
+            gap: 1rem;
+        }
+
+        &-button {
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 5;
+
+            svg {
+                font-size: 3rem;
+                color: rgba($color-black, 0.3);
+            }
+
+            .input-file {
+                @include flex(column, center, center);
+                border: none;
+                max-width: 100%;
+
+                &::-webkit-file-upload-button {
+                    display: none;
+                }
+
+                //CUSTOM BUTTON
+                &::before {
+                    content: 'Add images';
+                    text-align: center;
+                    font-size: 1rem;
+                    display: inline-block;
+                    display: block;
+                    border: none;
+                    cursor: pointer;
+                    padding: 0.5rem 1.5rem;
+                    height: 34px;
+                    border-radius: 0.3rem;
+                    color: $color-offwhite;
+                    transition: $transition;
+                    background: $color-green;
+                    margin-bottom: 0.5rem;
+                }
+            }
+        }
+
+        .dropzone {
+            padding: 2rem;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transition: $transition;
         }
     }
 
@@ -114,9 +149,55 @@
         margin: 3rem auto;
     }
 
-    h4{
+    h4 {
         position: absolute;
         bottom: 0;
         margin-bottom: 1rem;
+    }
+}
+
+.drag-active {
+    z-index: 99;
+    background: rgba($color-white, 0.5);
+}
+
+//LOADING MONITOR
+
+.progress {
+    width: 100%;
+    height: 2rem;
+    border: 1px solid $color-grey;
+    border-radius: 0.3rem;
+    @include flex(column, center, flex-start);
+    margin: 1rem 0;
+    position: relative;
+
+    &-bar {
+        height: 100%;
+        background-color: $color-orange-light-3;
+        border-radius: 0.3rem;
+        @include flex(column, center, flex-start);        
+        transition: $transition;
+        position: absolute;
+        z-index: 0;
+    }
+
+    &-text {
+        padding-left: 1rem;
+        z-index: 1;
+    }
+}
+
+.progress-img {
+    width: 100%;
+    border: 1px solid $color-grey;
+    border-radius: 0.3rem;
+    padding: 1rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+
+    img {
+        aspect-ratio: 1 / 1;
     }
 }

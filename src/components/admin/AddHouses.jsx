@@ -6,6 +6,7 @@ import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { storage } from '../../firebase/config';
 import { db } from '../../firebase/config';
 import "../../pages/Admin/admin.scss";
+import * as RiIcons from "react-icons/ri";
 
 const initialState = {
   description: "",
@@ -21,8 +22,8 @@ const AddHouses = () => {
     ...initialState
   })
 
-  const [imgCount, setImgCount] = useState(0);
   const [message, setMessage] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const handleInputChange = (event) => {
     const { name, value, type, checked } = event.target;
@@ -34,34 +35,48 @@ const AddHouses = () => {
     })
   }
 
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.target.classList.add("drag-active");
+  }
+
+  const handleDragLeave = (event) => {
+    event.preventDefault();
+    event.target.classList.remove("drag-active");
+  }
+
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    console.log(file);
+    event.preventDefault();
+    event.target.classList.remove("drag-active");
+    const data = event.target.classList.contains('dropzone') ? event.dataTransfer.files : event.target.files;
+    const photos = Array.from(data);
 
-    const storageRef = ref(storage, `booking/${Date.now()}${file.name}`);
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    photos.map((photo) => {
+      const storageRef = ref(storage, `booking/${Date.now()}${photo.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, photo);
 
-    uploadTask.on('state_changed',
-      (snapshot) => {
-        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-      },
-      (error) => {
-        //set error message
-      },
-      () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setHouse(prevData => {
-            return {
-              ...prevData,
-              imageUrl: [...prevData.imageUrl, downloadURL]
-            }
+      uploadTask.on('state_changed',
+        (snapshot) => {
+          const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          // console.log('Upload is ' + progress + '% done');
+          setUploadProgress(progress)
+        },
+        (error) => {
+          //set error message
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            setHouse(prevData => {
+              return {
+                ...prevData,
+                imageUrl: [...prevData.imageUrl, downloadURL]
+              }
+            });
           });
-          setImgCount(prev => prev + 1)
-        });
-      }
-    );
-    console.log(house.imageUrl.length);
+        }
+      );
+      console.log(house.imageUrl.length);
+    })
   }
 
   const handleSubmit = (event) => {
@@ -79,6 +94,7 @@ const AddHouses = () => {
         createAt: Timestamp.now().toDate()
       });
       setHouse({ ...initialState });
+      setUploadProgress(0);
       setMessage("House uploaded succesfully");
     } catch (error) {
       setMessage(error.message)
@@ -100,7 +116,7 @@ const AddHouses = () => {
         />
 
         <fieldset>
-          <legend className='main-label'>Type of a house:</legend>
+          <legend className='main-label'>House Standard:</legend>
           <input
             type="radio"
             id="Basic"
@@ -152,27 +168,46 @@ const AddHouses = () => {
           onChange={handleInputChange}
         />
 
-
         <label className='main-label'>House Images:</label>
-        <input
-          className='input-file'
-          type="file"
-          accept='image/*'
-          name="image"
-          onChange={handleImageChange}
-        />
         <div className='form-img'>
-          <input
-            className='url-holder'
-            type="text"
-            name="imageUrl"
-            // required
-            disabled
-            value={imgCount}
-          />
-          <label>Images Added</label>
-        </div>
+          <div
+            className="dropzone"
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleImageChange}
+          ></div>
+          <div className='form-img-button'>
+            <RiIcons.RiImageAddLine />
+            <p>Drag and drop to upload photos or</p>
+            <input
+              className='input-file'
+              type="file"
+              accept='image/*'
+              name="image"
+              multiple
+              onChange={handleImageChange}
+            />
+          </div>
+        </div >
 
+        {uploadProgress === 0 ? null : (
+          <div className='progress'>
+            <div className='progress-bar' style={{ width: `${uploadProgress}%` }}></div>
+            <div className='progress-text'>
+              {uploadProgress < 100 ? `Uploading ${uploadProgress}%` : `Upload Complete ${uploadProgress}%`}
+            </div>
+          </div>
+        )}
+
+        {house.imageUrl.length === 0 ? null : (
+          <div className='progress-img'>
+            {house.imageUrl.map((img, index) => {
+              return (
+                <img src={img} alt="house-loading" key={index} />
+              )
+            })}
+          </div>
+        )}
 
         <Button color="black" type="submit" text="Add a house" />
         {

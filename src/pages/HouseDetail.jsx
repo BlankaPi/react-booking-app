@@ -11,6 +11,7 @@ const HouseDetail = () => {
     const { id } = useParams();
     const [house, setHouse] = useState(null);
     const [showAllPhotos, setShowAllPhotos] = useState(false);
+    const [photoUrl, SetPhotoUrl] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,22 +34,21 @@ const HouseDetail = () => {
         setShowAllPhotos(false);
     }
 
-    const handleClickOn = () => {
+    const handleClickOn = (event) => {
         setShowAllPhotos(true);
+        event.target.tagName === "IMG" ? SetPhotoUrl(event.target.src) : SetPhotoUrl("");
     }
 
     const handleGoHome = () => {
         navigate("/");
     }
 
-    //do zrobienia!!!
-
     if (house && showAllPhotos) {
         return (
             <div className='container'>
                 <ArrowButton type="button" text="Go back" handleClick={handleClickOff} />
                 <div className='slider-container'>
-                    <Slider {...house} />
+                    <Slider {...house} photoUrl={photoUrl} />
                 </div >
             </div>
 
@@ -59,9 +59,8 @@ const HouseDetail = () => {
         <div className='container'>
             <ArrowButton type="button" text="Go back" handleClick={handleGoHome}/>
             {house ? (
-                <HouseDetailCard {...house} handleClick={handleClickOn}/>
+                <HouseDetailCard {...house} handleClickOn={handleClickOn}/>
             ) : <LoaderDetail />}
-            <p onClick={() => setShowAllPhotos(true)}>Gallery</p>
         </div>
     )
 }

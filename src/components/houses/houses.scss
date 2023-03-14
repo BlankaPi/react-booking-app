@@ -21,6 +21,12 @@
 }
 
 .house-card {
+    a {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 
     .img-container {
         width: 100%;
@@ -44,14 +50,18 @@
     .title-container {
         @include flex(row, space-between, center);
         margin: 0.5rem 0;
+
+        h4:nth-child(2) {
+            text-align: right
+        }
     }
 
     .detail-container {
         @include flex(row, space-between, center);
+        margin-top: auto;
 
         svg {
             font-size: 1.5rem;
         }
     }
 }
-

@@ -21,13 +21,20 @@
         margin: 0.5rem;
         background-color: rgba($color-offwhite, 0.9);
         color: $color-black;
+        box-shadow: none;
+        z-index: 99;
+
+        &:hover {
+            background-color: rgba($color-orange-light-2, 0.9);
+            box-shadow: none;
+        }
     }
 
     .big-img-container {
         flex: 2;
         @include flex(column, center, center);
         overflow: hidden;
-        border-radius: 5px;        
+        border-radius: 5px;
     }
 
     .small-img-container {
@@ -46,6 +53,11 @@
     overflow: hidden;
     @include flex(row, center, center);
     border-radius: 5px;
+
+    &:hover img {
+        transform: scale(1.05);
+        filter: brightness(75%);
+    }
 }
 
 img {
@@ -53,10 +65,7 @@ img {
     min-width: 100%;
     min-height: 100%;
     transition: $transition;
-
-    // &:hover {
-    //     filter: brightness(80%);
-    // }
+    cursor: pointer;
 }
 
 .details-container {
@@ -69,4 +78,10 @@ img {
 
 .disabled {
     cursor: auto;
+
+    &:hover {
+        background-color: $color-orange;
+        color: $color-offwhite;
+        box-shadow: none;
+    }
 }
