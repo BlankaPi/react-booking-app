@@ -15,5 +15,5 @@ Logged in admin has access to admin page where adding more houses for rent is av
 ![Gettin Started](./description-photos/home-page.JPG)
 ![Gettin Started](./description-photos/reservation-page.JPG)
 ![Gettin Started](./description-photos/admin-page.JPG)
-![Gettin Started](./description-photos/reservation-page.JPG)
+![Gettin Started](./description-photos/login-page.JPG)
 
