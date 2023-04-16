@@ -1,5 +1,27 @@
 @use "../../sass/abstracts" as *;
 
+button {
+    &.green {
+        background-color: $color-green;
+    }
+
+    &.orange {
+        background-color: $color-orange;
+    }
+
+    &.black {
+        background-color: $color-black;
+    }
+
+    &.white {
+        background-color: $color-white;
+    }
+
+    &:hover {
+        box-shadow: 0px 1px 3px 2px darken($color-grey, 5%);
+    }
+}
+
 .rectangle {
     display: block;
     border: none;
@@ -9,25 +31,6 @@
     color: $color-offwhite;
     transition: $transition;
     box-shadow: 0px 1px 3px 1px $color-grey;
-
-    &.green {
-        background-color: $color-green;        
-    }
-
-    &.orange {
-        background-color: $color-orange;
-    }
-
-    &.black {
-        background-color: $color-black;
-    }   
-    
-    &:hover {
-        box-shadow: 0px 1px 3px 2px darken($color-grey, 5%);
-        // background-color: $color-orange-light-3;  
-        // color: $color-black
-    }
-
 }
 
 .arrow-button {
@@ -37,7 +40,11 @@
     cursor: pointer;
     background-color: transparent;
     color: $color-black;
-    text-decoration: underline;    
+    text-decoration: underline;
+    
+    p {
+        transition: $transition;
+    }
 
     svg {
         margin-right: 0.5rem;
@@ -45,4 +52,40 @@
         font-size: 1.5rem;
         padding: 0;
     }
+
+    &:hover {
+        box-shadow: none;
+        p {
+            transform: translateX(0.5rem);
+            letter-spacing: 0.1rem
+        }
+    }
+}
+
+.icon {
+    @include flex(row, center, center);
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 0.3rem;
+    color: $color-black;
+    transition: $transition;
+
+    p {
+        line-height: 125%;
+    }
+
+    svg {
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+    }
+}
+
+.circle {
+    @include flex(row, center, center);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 100%;
+    border: 1px solid $color-grey;
+    background: $color-white;
 }

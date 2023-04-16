@@ -1,0 +1,44 @@
+@use "../../sass/abstracts/" as *;
+
+.reservation-form {
+    @include flex(column, flex-start, center);
+    gap: 1rem;
+    border: 1px solid $color-grey;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+
+    .input-container {
+        width: 100%;
+        @include flex(row, space-between, center);
+        border: 1px solid $color-grey;
+        background: $color-white;
+        padding: 0.5rem;
+        border-radius: 0.3rem;
+
+        input {
+            border: none;
+            background: none;
+            cursor: pointer;
+        }
+    }
+
+    .pet {
+        border: none;
+        background: none;
+    }
+
+    button[type="submit"] {
+        width: 100%
+    }
+}
+
+.guest-number {
+    @include flex(row, space-between, center);
+
+    .value {
+        margin: 0 0.5rem;
+        width: 1rem;
+        text-align: center;
+    }
+}

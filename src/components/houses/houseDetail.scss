@@ -11,30 +11,23 @@
     flex-direction: row;
     max-height: 80vh;
     aspect-ratio: 3 / 2;
-    margin-bottom: 2rem;
+    margin-bottom: 6rem;
     position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
 
-    button.rectangle {
+    button.icon {
         position: absolute;
         bottom: 0;
         right: 0;
         margin: 0.5rem;
-        background-color: rgba($color-offwhite, 0.9);
-        color: $color-black;
-        box-shadow: none;
         z-index: 99;
-
-        &:hover {
-            background-color: rgba($color-orange-light-2, 0.9);
-            box-shadow: none;
-        }
     }
 
     .big-img-container {
         flex: 2;
         @include flex(column, center, center);
         overflow: hidden;
-        border-radius: 5px;
     }
 
     .small-img-container {
@@ -52,7 +45,6 @@
     aspect-ratio: 1 / 1;
     overflow: hidden;
     @include flex(row, center, center);
-    border-radius: 5px;
 
     &:hover img {
         transform: scale(1.05);
@@ -68,13 +60,7 @@ img {
     cursor: pointer;
 }
 
-.details-container {
-    margin: 1rem 0;
 
-    h3 {
-        margin-bottom: 1rem;
-    }
-}
 
 .disabled {
     cursor: auto;
@@ -82,6 +68,35 @@ img {
     &:hover {
         background-color: $color-orange;
         color: $color-offwhite;
-        box-shadow: none;
+    }
+}
+
+.form-details-container {
+    @include flex(row, center, flex-start);
+    gap: 3rem;
+
+    .details-container {
+        flex: 2;
+        @include flex(column, center, flex-end);
+        gap: 1rem;
+
+        div:nth-child(1) {
+            @include flex(row, space-between, center);
+            width: 100%;
+        }
+
+        h3 {
+            border-bottom: 1px solid $color-grey;
+            width: 100%;
+            text-align: right;
+        }
+
+        p {
+            text-align: justify;
+        }
+    }
+
+    .form-container {
+        flex: 1;
     }
 }
