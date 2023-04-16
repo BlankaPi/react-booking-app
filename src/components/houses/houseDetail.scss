@@ -11,7 +11,7 @@
     flex-direction: row;
     max-height: 80vh;
     aspect-ratio: 3 / 2;
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     position: relative;
     border-radius: 1rem;
     overflow: hidden;
@@ -38,6 +38,24 @@
         width: 100%;
         margin-left: 1rem;
         gap: 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .multi-img-container {
+        .small-img-container {
+            margin-left: 0.5rem;
+            gap: 0.5rem;
+        }
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .multi-img-container {
+        aspect-ratio: 1 / 1;
+        .small-img-container {
+            display: none;
+        }
     }
 }
 
@@ -79,6 +97,7 @@ img {
         flex: 2;
         @include flex(column, center, flex-end);
         gap: 1rem;
+        width: 100%;
 
         div:nth-child(1) {
             @include flex(row, space-between, center);
@@ -97,6 +116,20 @@ img {
     }
 
     .form-container {
+        width: 100%;
         flex: 1;
     }
 }
+
+@media screen and (max-width: 600px) {
+    .form-details-container {
+        flex-direction: column-reverse;
+        .details-container {
+            flex: 1;
+        }
+        .form-container {
+            flex: 1;
+        }
+    }
+}
+
