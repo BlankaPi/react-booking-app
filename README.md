@@ -1,6 +1,7 @@
-Reac booking app
+React booking app
 
 Single page application for reservation purposes
+
 Tools: React.js, SASS, Firebase
 
 Link to live-app:
